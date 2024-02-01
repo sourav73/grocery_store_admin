@@ -1,1 +1,22 @@
 <app-heading headerText="Categories"></app-heading>
+
+<div class="container">
+  <div>
+    <button class="btn btn-outline-success" (click)="openModal(0)">
+      Add Category
+    </button>
+  </div>
+  <div class="categories">
+    @if (categories.length) { @for (category of categories; track category.id) {
+    <!-- <p>Name: {{ category.categoryName }} </p> -->
+    <app-category-item
+      [category]="category"
+      (editCategoryEmit)="openModal(category.id)"
+    ></app-category-item>
+    } @empty {
+    <p>There are no Categories.</p>
+    } } @else {
+    <p>Loading....</p>
+    }
+  </div>
+</div>

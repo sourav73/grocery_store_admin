@@ -1,0 +1,29 @@
+<div class="app-modal">
+  <div class="modal-header">
+    <h4>{{ headingText }}</h4>
+    <button class="btn btn-danger" (click)="closeModal()">X</button>
+  </div>
+  <div class="app-modal-body">
+    <div class="row justify-content-center py-4">
+      <div class="col-lg-9">
+        <p class="text-center mb-4 text-gray mb-2">{{ warningText }}</p>
+        <div class="d-flex justify-content-center">
+          <button
+            type="button"
+            class="btn btn-outline-danger"
+            (click)="cancel()"
+          >
+            No
+          </button>
+          <button
+            type="button"
+            class="btn btn-success ms-3"
+            (click)="confirm()"
+          >
+            Yes
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

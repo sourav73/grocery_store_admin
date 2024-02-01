@@ -1,7 +1,16 @@
 <app-navbar></app-navbar>
 <main class="d-flex">
-    <app-sidebar></app-sidebar>
-    <div class="content w-100">
-        <router-outlet></router-outlet>
-    </div>
+  <app-sidebar></app-sidebar>
+  <div class="content w-100">
+    <router-outlet></router-outlet>
+  </div>
 </main>
+
+<ngx-spinner
+  bdColor="rgba(51,51,51,0.8)"
+  size="medium"
+  color="#fff"
+  type="ball-scale-multiple"
+>
+  <p style="font-size: 20px; color: white">Loading...</p>
+</ngx-spinner>
