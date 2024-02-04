@@ -5,7 +5,12 @@
       <div class="actions">
         <button
           class="btn btn-primary"
-          (click)="editCategoryEmit.emit(category.id)"
+          (click)="
+            editCategoryEmit.emit({
+              id: category.id,
+              parentId: category.parentId
+            })
+          "
         >
           Edit
         </button>

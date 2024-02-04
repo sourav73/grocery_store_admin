@@ -2,7 +2,7 @@
 
 <div class="container">
   <div>
-    <button class="btn btn-outline-success" (click)="openModal(0)">
+    <button class="btn btn-outline-success" (click)="openModal(0, 0)">
       Add Category
     </button>
   </div>
@@ -11,7 +11,7 @@
     <!-- <p>Name: {{ category.categoryName }} </p> -->
     <app-category-item
       [category]="category"
-      (editCategoryEmit)="openModal(category.id)"
+      (editCategoryEmit)="openModal(category.id, category.parentId)"
     ></app-category-item>
     } @empty {
     <p>There are no Categories.</p>
