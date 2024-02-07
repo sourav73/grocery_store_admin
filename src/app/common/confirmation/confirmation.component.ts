@@ -5,7 +5,6 @@ import { BsModalRef } from 'ngx-bootstrap/modal';
   selector: 'app-confirmation',
   standalone: true,
   imports: [],
-  providers: [BsModalRef],
   templateUrl: './confirmation.component.html',
   styleUrl: './confirmation.component.scss',
 })
@@ -17,7 +16,6 @@ export class ConfirmationComponent {
 
   closeModal() {
     this.bsModalRef.hide();
-    this.confirmed.emit(false);
   }
 
   cancel(): void {

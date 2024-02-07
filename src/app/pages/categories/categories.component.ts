@@ -1,7 +1,7 @@
 import { Component, OnDestroy, OnInit, inject } from '@angular/core';
 import { HeadingComponent } from '../../common/heading/heading.component';
 import { Subject, takeUntil } from 'rxjs';
-import { Category } from './category-type';
+import { Category, CategoryItem } from './category-type';
 import { CategoryService } from './categor.service';
 import { CategoryItemComponent } from './category-item/category-item.component';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
@@ -21,12 +21,11 @@ import { SingleObjectOutput } from '../../common/types/response';
 export class CategoriesComponent implements OnInit, OnDestroy {
   toastrService = inject(ToastrService);
   modalService = inject(BsModalService);
-  // bsModalRef = inject(BsModalRef);
-  categories: Category[] = [];
+  categories: CategoryItem[] = [];
   categoryService = inject(CategoryService);
   categoryForm: FormGroup = new FormGroup({});
   isEditMode: boolean = false;
-  selectedParentId: number = 0;
+  selectedParentId: number | null = null;
   ngUnsubscribe$ = new Subject<void>();
 
   constructor() {}
@@ -53,11 +52,12 @@ export class CategoriesComponent implements OnInit, OnDestroy {
     this.isEditMode = isEdit;
   }
 
-  openModal(categoryId: number) {
+  openModal(categoryId: number, parentId: number) {
     const initialState = {
       categoryForm: this.categoryForm,
       isEditMode: categoryId ? true : false,
       categoryId,
+      parentId,
       selectedParentId: this.selectedParentId,
       categories: this.categories,
     };
@@ -71,7 +71,7 @@ export class CategoriesComponent implements OnInit, OnDestroy {
     modalRef.content?.submitted.subscribe(() => {
       const categoryToAddOrUpdate = {
         categoryName: this.categoryForm.value.categoryName,
-        parentId: this.selectedParentId,
+        parentId: this.selectedParentId || 0,
       };
       if (categoryId) {
         this.categoryService
