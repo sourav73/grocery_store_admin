@@ -16,12 +16,18 @@
         [(ngModel)]="selectedParentId"
         [ngModelOptions]="{ standalone: true }"
         [searchable]="false"
+        [clearable]="false"
         groupBy="parentId"
         [selectableGroup]="true"
+        placeholder="Select a parent"
       >
         @for (category of categories; track category.id) {
         <!-- <ng-option [value]="0">Select a category</ng-option> -->
-        <ng-option [value]="category.id">{{ category.categoryName }}</ng-option>
+        <ng-option
+          [value]="category.id"
+          [ngStyle]="{ 'padding-left': category.level * 2 + 'px' }"
+          >{{ category.categoryName }}</ng-option
+        >
         } @empty {
         <p>No Parent found</p>
         }

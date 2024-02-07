@@ -8,13 +8,14 @@ import {
 } from '@angular/core';
 import { FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgSelectModule } from '@ng-select/ng-select';
-import { Category } from '../category-type';
+import { CategoryItem } from '../category-type';
 import { BsModalRef } from 'ngx-bootstrap/modal';
+import { NgStyle } from '@angular/common';
 
 @Component({
   selector: 'app-category-modal',
   standalone: true,
-  imports: [ReactiveFormsModule, NgSelectModule, FormsModule],
+  imports: [ReactiveFormsModule, NgSelectModule, FormsModule, NgStyle],
   templateUrl: './category-modal.component.html',
   styleUrl: './category-modal.component.scss',
 })
@@ -23,8 +24,9 @@ export class CategoryModalComponent implements OnInit {
   @Input() categoryForm: FormGroup = new FormGroup({});
   @Input() isEditMode: boolean = false;
   @Input() categoryId: number = 0;
-  @Input() selectedParentId: number = 0;
-  @Input() categories: Category[] = [];
+  @Input() parentId: number = 0;
+  @Input() selectedParentId: number | null = null;
+  @Input() categories: CategoryItem[] = [];
   @Output() submitted: EventEmitter<void> = new EventEmitter();
 
   ngOnInit(): void {
@@ -33,6 +35,7 @@ export class CategoryModalComponent implements OnInit {
       this.categoryForm
         .get('categoryName')
         ?.setValue(category?.categoryName || '');
+      this.selectedParentId = this.parentId;
     }
   }
   closeModal() {

@@ -3,7 +3,7 @@ import { Injectable, inject } from '@angular/core';
 import { environment } from '../../../environment/environment';
 import { ListOutput, SingleObjectOutput } from '../../common/types/response';
 import { Observable } from 'rxjs';
-import { Category } from './category-type';
+import { Category, CategoryItem } from './category-type';
 
 @Injectable({
   providedIn: 'root',
@@ -13,8 +13,12 @@ export class CategoryService {
   http = inject(HttpClient);
   constructor() {}
 
-  getCategories(): Observable<ListOutput<Category>> {
+  getCategoriesWithNestedChild(): Observable<ListOutput<Category>> {
     return this.http.get<ListOutput<Category>>(`${this.apiUrl}/categories`);
+  }
+
+  getCategories(): Observable<ListOutput<CategoryItem>> {
+    return this.http.get<ListOutput<CategoryItem>>(`${this.apiUrl}/categories/all`);
   }
 
   addCategory(category: any): Observable<SingleObjectOutput<boolean>> {
