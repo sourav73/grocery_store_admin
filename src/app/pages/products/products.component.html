@@ -6,16 +6,16 @@
       Add Product
     </button>
   </div>
-  <!-- <div class="products">
-    @if (categories.length) { @for (category of categories; track category.id) {
-    <app-category-item
-      [category]="category"
-      (editCategoryEmit)="openModal(category.id)"
-    ></app-category-item>
+  <div class="products">
+    @if (products.length) { @for (product of products; track product.id) {
+    <app-product-item
+      [product]="product"
+      (editSuccess)="refreshProducts()"
+    ></app-product-item>
     } @empty {
-    <p>There are no Categories.</p>
+    <p>There are no Products.</p>
     } } @else {
     <p>Loading....</p>
     }
-  </div> -->
+  </div>
 </div>

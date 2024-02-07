@@ -1,0 +1,25 @@
+<div class="card my-2">
+  <div class="card-body">
+    <div class="card-content d-flex justify-content-between align-items-center">
+      <div class="product-info d-flex align-items-center">
+        @if(product.imagePath){
+        <img
+          [src]="product.imagePath"
+          [alt]="product.name"
+          height="50"
+          width="50"
+        />
+        } @else {
+        <img src="assets/no-image.png" alt="" height="50" width="50" />
+        }
+        <p>{{ product.name }}</p>
+      </div>
+      <div class="actions">
+        <button class="btn btn-primary" (click)="openEditModal()">Edit</button>
+        <button class="btn btn-danger ms-3" (click)="openDeleteConfirmModal()">
+          Delete
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

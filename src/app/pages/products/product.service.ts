@@ -3,6 +3,7 @@ import { Injectable, inject } from '@angular/core';
 import { environment } from '../../../environment/environment';
 import { ListOutput, SingleObjectOutput } from '../../common/types/response';
 import { Observable } from 'rxjs';
+import { Product, ProductInput } from './product-type';
 
 @Injectable({
   providedIn: 'root',
@@ -12,30 +13,36 @@ export class ProductService {
   http = inject(HttpClient);
   constructor() {}
 
-  // getProducts(): Observable<ListOutput<Category>> {
-  //   return this.http.get<ListOutput<Category>>(`${this.apiUrl}/categories`);
-  // }
+  getProducts(): Observable<ListOutput<Product>> {
+    return this.http.get<ListOutput<Product>>(`${this.apiUrl}/products`);
+  }
 
-  // addProduct(category: any): Observable<SingleObjectOutput<boolean>> {
-  //   return this.http.post<SingleObjectOutput<boolean>>(
-  //     `${this.apiUrl}/categories`,
-  //     category
-  //   );
-  // }
+  getProductById(id: number): Observable<SingleObjectOutput<Product>> {
+    return this.http.get<SingleObjectOutput<Product>>(
+      `${this.apiUrl}/Product/${id}`
+    );
+  }
 
-  // updateProduct(
-  //   id: number,
-  //   product: { categoryName: string; parentId: number }
-  // ): Observable<SingleObjectOutput<boolean>> {
-  //   return this.http.put<SingleObjectOutput<boolean>>(
-  //     `${this.apiUrl}/categories/${id}`,
-  //     category
-  //   );
-  // }
+  addProduct(category: any): Observable<SingleObjectOutput<boolean>> {
+    return this.http.post<SingleObjectOutput<boolean>>(
+      `${this.apiUrl}/Product`,
+      category
+    );
+  }
 
-  deleteCategory(id: number): Observable<SingleObjectOutput<boolean>> {
+  updateProduct(
+    id: number,
+    product: ProductInput
+  ): Observable<SingleObjectOutput<boolean>> {
+    return this.http.put<SingleObjectOutput<boolean>>(
+      `${this.apiUrl}/Product/${id}`,
+      product
+    );
+  }
+
+  deleteProduct(id: number): Observable<SingleObjectOutput<boolean>> {
     return this.http.delete<SingleObjectOutput<boolean>>(
-      `${this.apiUrl}/categories/${id}`
+      `${this.apiUrl}/Product/${id}`
     );
   }
 }

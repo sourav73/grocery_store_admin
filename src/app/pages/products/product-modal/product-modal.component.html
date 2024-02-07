@@ -8,16 +8,15 @@
   <form [formGroup]="productForm" (ngSubmit)="onSubmit()">
     <div class="mb-3">
       <label class="form-label">Product Name</label>
-      <input type="email" class="form-control" formControlName="categoryName" />
+      <input type="text" class="form-control" formControlName="name" />
     </div>
     <div class="mb-3">
       <label class="form-label">Select Category</label>
       <ng-select
-        [(ngModel)]="selectedParentId"
-        [ngModelOptions]="{ standalone: true }"
+        formControlName="categoryId"
         [searchable]="false"
-        groupBy="parentId"
-        [selectableGroup]="true"
+        [clearable]="false"
+        placeholder="Select Category"
       >
         @for (category of categories; track category.id) {
         <ng-option [value]="category.id">{{ category.categoryName }}</ng-option>
@@ -25,6 +24,26 @@
         <p>No Category found</p>
         }
       </ng-select>
+    </div>
+    <div class="mb-3">
+      <label class="form-label">Product Description</label>
+      <input type="text" class="form-control" formControlName="description" />
+    </div>
+    <div class="mb-3">
+      <label class="form-label">Product Price</label>
+      <input type="number" class="form-control" formControlName="price" />
+    </div>
+    <div class="mb-3">
+      <label class="form-label">Product Weight(KG)</label>
+      <input type="number" class="form-control" formControlName="weight" />
+    </div>
+    <div class="mb-3">
+      <label class="form-label">Product Discount</label>
+      <input type="number" class="form-control" formControlName="discount" />
+    </div>
+    <div class="mb-3">
+      <label class="form-label">Product ImagePath</label>
+      <input type="number" class="form-control" formControlName="imagePath" />
     </div>
     <button type="submit" class="btn btn-success">
       {{ productId ? "Update" : "Add" }}
