@@ -1,0 +1,33 @@
+<div class="modal-header">
+  <h1 class="modal-title fs-5" id="exampleModalLabel">
+    {{ isEditMode ? "Edit" : "Add" }} Product
+  </h1>
+  <button class="btn btn-danger" (click)="closeModal()">X</button>
+</div>
+<div class="modal-body">
+  <form [formGroup]="productForm" (ngSubmit)="onSubmit()">
+    <div class="mb-3">
+      <label class="form-label">Product Name</label>
+      <input type="email" class="form-control" formControlName="categoryName" />
+    </div>
+    <div class="mb-3">
+      <label class="form-label">Select Category</label>
+      <ng-select
+        [(ngModel)]="selectedParentId"
+        [ngModelOptions]="{ standalone: true }"
+        [searchable]="false"
+        groupBy="parentId"
+        [selectableGroup]="true"
+      >
+        @for (category of categories; track category.id) {
+        <ng-option [value]="category.id">{{ category.categoryName }}</ng-option>
+        } @empty {
+        <p>No Category found</p>
+        }
+      </ng-select>
+    </div>
+    <button type="submit" class="btn btn-success">
+      {{ productId ? "Update" : "Add" }}
+    </button>
+  </form>
+</div>
