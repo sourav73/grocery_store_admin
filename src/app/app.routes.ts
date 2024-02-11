@@ -4,6 +4,8 @@ import { PageNotFoundComponent } from './pages/page-not-found/page-not-found.com
 import { DashboardComponent } from './pages/dashboard/dashboard.component';
 import { CategoriesComponent } from './pages/categories/categories.component';
 import { ProductsComponent } from './pages/products/products.component';
+import { RolesComponent } from './pages/roles/roles.component';
+import { UsersComponent } from './pages/users/users.component';
 
 export const routes: Routes = [
   {
@@ -34,6 +36,16 @@ export const routes: Routes = [
         path: 'products',
         title: 'Products',
         component: ProductsComponent,
+      },
+      {
+        path: 'roles',
+        title: 'Roles',
+        component: RolesComponent,
+      },
+      {
+        path: 'users',
+        title: 'Users',
+        component: UsersComponent,
       },
     ],
   },
