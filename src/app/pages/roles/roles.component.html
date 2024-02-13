@@ -1,27 +1,35 @@
 <app-heading headerText="Roles"></app-heading>
 <div class="container">
+  <button
+    class="btn btn-outline-success d-block mb-3"
+    (click)="openModal(null)"
+  >
+    Add Role
+  </button>
   <table class="table table-striped">
     <thead>
       <tr>
-        <th scope="col" class="w-50">Role</th>
+        <th scope="col" class="w-75">Role</th>
         <th scope="col">Action</th>
       </tr>
     </thead>
     <tbody>
+      @for (role of roles; track role.id) {
       <tr>
-        <td>Admin</td>
+        <td class="text-transform-capitalize">{{ role.roleName }}</td>
         <td>
-          <button class="btn btn-outline-primary">Edit</button>
-          <button class="btn btn-danger ms-3">Delete</button>
+          <button class="btn btn-outline-primary" (click)="openModal(role)">
+            Edit
+          </button>
+          <button
+            class="btn btn-danger ms-3"
+            (click)="openDeleteConfirmModal(role.id)"
+          >
+            Delete
+          </button>
         </td>
       </tr>
-      <tr>
-        <td>Admin</td>
-        <td>
-          <button class="btn btn-outline-primary">Edit</button>
-          <button class="btn btn-danger ms-3">Delete</button>
-        </td>
-      </tr>
+      }
     </tbody>
   </table>
 </div>
