@@ -1,5 +1,11 @@
 <app-heading headerText="Users"></app-heading>
 <div class="container">
+  <button
+    class="btn btn-outline-success d-block mb-3"
+    (click)="openModal(null)"
+  >
+    Add User
+  </button>
   <table class="table table-striped">
     <thead>
       <tr>
@@ -11,26 +17,18 @@
       </tr>
     </thead>
     <tbody>
-      <tr>
-        <td>Robin Ahmed</td>
-        <td>robin-gmail.com</td>
-        <td>123456789</td>
-        <td>Dhaka</td>
-        <td>
-          <button class="btn btn-outline-primary">Edit</button>
-          <button class="btn btn-danger ms-3">Delete</button>
-        </td>
-      </tr>
-      <tr>
-        <td>Robin Ahmed</td>
-        <td>robin-gmail.com</td>
-        <td>123456789</td>
-        <td>Dhaka</td>
-        <td>
-          <button class="btn btn-outline-primary">Edit</button>
-          <button class="btn btn-danger ms-3">Delete</button>
-        </td>
-      </tr>
+      @for (user of users; track user.id) {
+        <tr>
+          <td>{{ user.name }}</td>
+          <td>{{ user.email }}</td>
+          <td>{{ user.phone }}</td>
+          <td>{{ user.address }}</td>
+          <td>
+            <button class="btn btn-outline-primary" (click)="openModal(user)">Edit</button>
+            <button class="btn btn-danger ms-3" (click)="openDeleteConfirmModal(user.id)">Delete</button>
+          </td>
+        </tr>
+      }
     </tbody>
   </table>
 </div>

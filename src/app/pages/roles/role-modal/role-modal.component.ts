@@ -17,7 +17,7 @@ import { ToastrService } from 'ngx-toastr';
   selector: 'app-role-modal',
   standalone: true,
   imports: [ReactiveFormsModule, FormsModule],
-  providers: [RoleService],
+  providers: [],
   templateUrl: './role-modal.component.html',
   styleUrl: './role-modal.component.scss',
 })
