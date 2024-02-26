@@ -33,6 +33,28 @@
         }
       </ng-select>
     </div>
+    <!-- <div class="mb-3">
+      <label class="form-label">Select Parent</label>
+      <ng-select
+        [items]="nestedCategories"
+        bindLabel="categoryName"
+        bindValue="id"
+        groupBy="subCategories"
+        [clearable]="false"
+        [(ngModel)]="selectedParentId"
+        [ngModelOptions]="{ standalone: true }"
+      >
+        <ng-template ng-optgroup-tmp let-item="item">
+          {{ item.categoryName }}
+        </ng-template>
+        <ng-template ng-option-tmp let-item="item">
+          {{ item.categoryName }}
+        </ng-template>
+        <ng-template ng-option-tmp let-item="item">
+          {{ item.categoryName }}
+        </ng-template>
+      </ng-select>
+    </div> -->
     <button type="submit" class="btn btn-success">
       {{ categoryId ? "Update" : "Add" }}
     </button>

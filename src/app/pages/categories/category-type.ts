@@ -6,8 +6,8 @@ export interface Category {
 }
 
 export interface CategoryItem {
-  id: number,
+  id: number;
   parentId: number;
-  categoryName: string,
-  level: number
+  categoryName: string;
+  level: number;
 }

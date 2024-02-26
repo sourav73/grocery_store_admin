@@ -8,9 +8,10 @@ import {
 } from '@angular/core';
 import { FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgSelectModule } from '@ng-select/ng-select';
-import { CategoryItem } from '../category-type';
+import { Category, CategoryItem } from '../category-type';
 import { BsModalRef } from 'ngx-bootstrap/modal';
 import { NgStyle } from '@angular/common';
+import { CategoryService } from '../categor.service';
 
 @Component({
   selector: 'app-category-modal',
@@ -20,6 +21,7 @@ import { NgStyle } from '@angular/common';
   styleUrl: './category-modal.component.scss',
 })
 export class CategoryModalComponent implements OnInit {
+  categoryService = inject(CategoryService);
   bsModalRef = inject(BsModalRef);
   @Input() categoryForm: FormGroup = new FormGroup({});
   @Input() isEditMode: boolean = false;
@@ -29,6 +31,8 @@ export class CategoryModalComponent implements OnInit {
   @Input() categories: CategoryItem[] = [];
   @Output() submitted: EventEmitter<void> = new EventEmitter();
 
+  nestedCategories: Category[] = [];
+
   ngOnInit(): void {
     if (this.categoryId) {
       const category = this.categories.find((c) => c.id === this.categoryId);
@@ -37,6 +41,12 @@ export class CategoryModalComponent implements OnInit {
         ?.setValue(category?.categoryName || '');
       this.selectedParentId = this.parentId;
     }
+
+    this.categoryService.getCategoriesWithNestedChild().subscribe(res => {
+      if(res.data.length) {
+        this.nestedCategories = res.data;
+      }
+    });
   }
   closeModal() {
     this.bsModalRef.hide();
